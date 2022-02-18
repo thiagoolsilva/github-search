@@ -14,14 +14,13 @@
  *  limitations under the License.
  */
 
-package com.lopes.githubsearch.data.dao
+package com.lopes.githubsearch.data.database.dao
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.lopes.githubsearch.data.database.AppDatabase
-import com.lopes.githubsearch.data.database.dao.SearchGithubDao
 import com.lopes.githubsearch.support.model.ObjectInject
 import com.lopes.githubsearch.util.rule.TestCoroutineRule
 import kotlinx.coroutines.Dispatchers
