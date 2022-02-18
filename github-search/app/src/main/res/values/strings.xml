@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">GithubSearch</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="list_top_kotlin_repo_label">List Top Kotlin Repositories</string>
+
+    <!-- list Top Kotlin Repo Fragment -->
+    <string name="retry_request">Retry request</string>
+    <string name="forks_title">Forks</string>
+    <string name="author_title">Author</string>
+</resources>
