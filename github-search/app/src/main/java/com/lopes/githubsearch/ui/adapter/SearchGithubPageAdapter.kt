@@ -59,7 +59,7 @@ class SearchGithubPageAdapter @Inject constructor() :
 
             val developerUrl = item.developerPhotoUrl
 
-            //download and cache image into ImageView
+            // download and cache image into ImageView
             Glide.with(binding.imgDeveloperUrl.context)
                 .load(developerUrl)
                 .into(binding.imgDeveloperUrl)
@@ -83,5 +83,4 @@ class SearchGithubPageAdapter @Inject constructor() :
             }
         }
     }
-
 }

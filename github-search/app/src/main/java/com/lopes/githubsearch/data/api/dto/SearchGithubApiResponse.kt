@@ -20,5 +20,5 @@ import com.squareup.moshi.Json
 
 data class SearchGithubApiResponse(
     @Json(name = "total_count") val total: Int = 0,
-    @Json(name = "items") val items: List<SearchGithubInfoItemResponse> = emptyList(),
+    @Json(name = "items") val items: List<SearchGithubInfoItemResponse> = emptyList()
 )

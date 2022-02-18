@@ -29,10 +29,10 @@ import com.lopes.githubsearch.presentation.SearchRepositoryViewModel
 import com.lopes.githubsearch.ui.adapter.SearchGithubInfoLoadState
 import com.lopes.githubsearch.ui.adapter.SearchGithubPageAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 private const val DEFAULT_SEARCH_QUERY_REPOSITORY = "kotlin"
 
@@ -48,7 +48,8 @@ class ListTopKotlinRepoFragment : Fragment() {
     private var fetchRepo: Job? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = ListTopKotlinRepoFragmentBinding.inflate(inflater, container, false)
@@ -85,7 +86,7 @@ class ListTopKotlinRepoFragment : Fragment() {
         }
         searchRepositoryAdapter.addLoadStateListener {
             // close swipe layout after event ended
-            binding.swipeContainer.isRefreshing = false;
+            binding.swipeContainer.isRefreshing = false
         }
     }
 
@@ -106,5 +107,4 @@ class ListTopKotlinRepoFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

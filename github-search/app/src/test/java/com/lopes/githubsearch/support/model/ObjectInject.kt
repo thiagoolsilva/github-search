@@ -40,7 +40,7 @@ class ObjectInject {
             1,
             "fake language",
             "fake login",
-            "avatar url",
+            "avatar url"
         )
         val searchGithubInfoItemResponse = SearchGithubInfoItemResponse(
             1,

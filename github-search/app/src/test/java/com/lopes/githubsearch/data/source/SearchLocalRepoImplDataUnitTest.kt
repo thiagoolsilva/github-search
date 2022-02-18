@@ -90,5 +90,4 @@ class SearchLocalRepoImplDataUnitTest {
 
         Assert.assertEquals(result, appDatabase)
     }
-
 }

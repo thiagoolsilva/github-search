@@ -106,5 +106,4 @@ class SearchGithubPageDaoUnitTest {
             inMemoryAppDb.close()
         }
     }
-
 }

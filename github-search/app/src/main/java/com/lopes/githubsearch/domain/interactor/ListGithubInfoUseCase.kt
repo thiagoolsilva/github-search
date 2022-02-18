@@ -17,11 +17,10 @@
 package com.lopes.githubsearch.domain.interactor
 
 import androidx.paging.map
-import com.lopes.githubsearch.domain.entity.SearchGithubDomain
 import com.lopes.githubsearch.domain.mapper.toSearchGithubDomain
 import com.lopes.githubsearch.domain.repository.SearchGithubRepository
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import kotlinx.coroutines.flow.map
 
 class ListGithubInfoUseCase @Inject constructor(
     private val searchGithubInfoRepository: SearchGithubRepository
