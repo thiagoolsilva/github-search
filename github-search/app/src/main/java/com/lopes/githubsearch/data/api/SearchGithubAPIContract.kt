@@ -20,7 +20,6 @@ import com.lopes.githubsearch.data.api.dto.SearchGithubApiResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-
 interface SearchGithubAPIContract {
 
     @GET("search/repositories?sort=stars")

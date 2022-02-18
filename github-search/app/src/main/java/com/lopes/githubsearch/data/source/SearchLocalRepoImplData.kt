@@ -41,6 +41,4 @@ class SearchLocalRepoImplData @Inject constructor(
     override fun getDatabase(): AppDatabase {
         return appDatabase
     }
-
-
 }

@@ -64,7 +64,6 @@ class ListGithubInfoUseCaseUnitTest {
         clearMocks(mockSearchGithubRepository)
     }
 
-
     @ExperimentalCoroutinesApi
     @Test
     fun should_return_true_if_repository_is_called_once() = testDispatcher.runBlockingTest {
@@ -118,5 +117,4 @@ class ListGithubInfoUseCaseUnitTest {
             val flowData = resultFlow.first().collectData(SearchGithubDomainDiff())
             Assert.assertEquals(flowData.size, 0)
         }
-
 }

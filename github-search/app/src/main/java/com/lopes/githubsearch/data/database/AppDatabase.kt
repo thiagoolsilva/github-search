@@ -33,5 +33,4 @@ abstract class AppDatabase : RoomDatabase() {
     // Database DAOs
     abstract fun searchGithubDao(): SearchGithubDao
     abstract fun searchGithubPageDao(): SearchGithubPageDao
-
 }

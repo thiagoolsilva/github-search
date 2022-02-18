@@ -30,7 +30,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class SearchLocalRepoPagingPagingImpDataUnitTest {
+class SearchLocalRepoPagingImpDataUnitTest {
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 

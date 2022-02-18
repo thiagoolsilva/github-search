@@ -31,5 +31,4 @@ class SearchGithubInfoItemResponseMapperUnitTest {
         val result = searchGithubInfoItemResponse.toGithubEntity()
         Assert.assertEquals(result, expectedGithubEntity)
     }
-
 }

@@ -28,8 +28,8 @@ import com.lopes.githubsearch.domain.repository.SearchGithubRepository
 import com.lopes.githubsearch.domain.repository.SearchLocalGithubInfoDataSource
 import com.lopes.githubsearch.domain.repository.SearchPagingLocalKeyDataSource
 import com.lopes.githubsearch.domain.repository.SearchRemoteGithubDataSource
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
 class SearchRepoInfoImpl @Inject constructor(
     private val remoteDataSource: SearchRemoteGithubDataSource,
@@ -41,7 +41,7 @@ class SearchRepoInfoImpl @Inject constructor(
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
-                pageSize = PagingConstants.Constants.PAGING_SIZE,
+                pageSize = PagingConstants.Constants.PAGING_SIZE
             ),
             remoteMediator = SearchGithubMediator(
                 query = repoLanguage,

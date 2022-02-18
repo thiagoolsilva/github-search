@@ -25,9 +25,9 @@ import com.lopes.githubsearch.domain.interactor.ListGithubInfoUseCase
 import com.lopes.githubsearch.presentation.mapper.toGithubInfoView
 import com.lopes.githubsearch.ui.model.GithubInfoView
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
 @HiltViewModel
 class SearchRepositoryViewModel @Inject constructor(

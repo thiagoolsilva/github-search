@@ -29,9 +29,9 @@ import com.lopes.githubsearch.data.mapper.toGithubEntity
 import com.lopes.githubsearch.domain.repository.SearchLocalGithubInfoDataSource
 import com.lopes.githubsearch.domain.repository.SearchPagingLocalKeyDataSource
 import com.lopes.githubsearch.domain.repository.SearchRemoteGithubDataSource
+import java.io.IOException
 import retrofit2.HttpException
 import timber.log.Timber
-import java.io.IOException
 
 @ExperimentalPagingApi
 class SearchGithubMediator(

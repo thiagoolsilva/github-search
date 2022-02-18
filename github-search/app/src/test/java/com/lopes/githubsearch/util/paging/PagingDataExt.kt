@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.ListUpdateCallback
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-
 /**
  * Extension function to get data from PagingData source
  */
