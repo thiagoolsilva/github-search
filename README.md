@@ -1,38 +1,41 @@
 <img alt="Icon" src="misc/app-icon.png" align="left" hspace="1" vspace="1">
 
-# TBD
+# Latest Github Kotlin repositories
 
 ![](https://img.shields.io/badge/-Android-1B5E20.svg?style=for-the-badge&logo=Android&logoColor=white)
 ![](https://img.shields.io/badge/-Kotlin-EF6C00.svg?style=for-the-badge&logo=Kotlin&logoColor=white)
-![](https://img.shields.io/badge/-Firebase-BF360C.svg?style=for-the-badge&logo=Firebase&logoColor=white)
+
 
 [![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-0D47A1.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0)
-![minSdkVersion 22](https://img.shields.io/badge/minSdkVersion-22-1B5E20?style=flat-square)
-![compileSdkVersion 29](https://img.shields.io/badge/compileSdkVersion-29-1B5E20?style=flat-square)
-![CI](https://github.com/thiagoolsilva/ShoppingList/workflows/CI/badge.svg)
+![minSdkVersion 23](https://img.shields.io/badge/minSdk-23-brightgreen?style=flat-square)
+![compileSdkVersion 32](https://img.shields.io/badge/compileSdk-32-brightgreen)
+![CI](https://github.com/thiagoolsilva/github-search/workflows/CI/badge.svg)
 
 </br>
 
 ## Description
 
-TBD
+It is a an app that will fetch latest kotlin repositories in github using android jetpack components. 
 
 ## Table of contents
 
-- [Characteristics](#characteristics)
-- [App Screenshot](#app-screenshot)
-- [Tech-stack](#tech-stack)
-	- [Tech-stack](#tech-stack)
-	- [Jetpack](#jetpack)
-	- [Tests](#tests)
-	- [Static code Analyse](#static-code-analyse)
-- [Architecture](#architecture)
-	- [What this project does not cover?](#what-this-project-does-not-cover)
-	- [Getting started](#getting-started)
-	- [Android Studio](#android-studio)
-	- [Projects](#projects)
-- [Author](#author)
-- [License](#license)
+- [Latest Github Kotlin repositories](#latest-github-kotlin-repositories)
+  - [Description](#description)
+  - [Table of contents](#table-of-contents)
+  - [Characteristics](#characteristics)
+  - [App Screenshot](#app-screenshot)
+  - [Tech-stack](#tech-stack)
+    - [Tech-stack](#tech-stack-1)
+    - [Jetpack](#jetpack)
+    - [Tests](#tests)
+    - [Static code Analyse](#static-code-analyse)
+  - [Architecture](#architecture)
+  - [What this project does not cover?](#what-this-project-does-not-cover)
+  - [Getting started](#getting-started)
+    - [Android Studio](#android-studio)
+    - [Command-line](#command-line)
+  - [Author](#author)
+  - [License](#license)
 
 
 ## Characteristics
@@ -40,18 +43,16 @@ TBD
 This project brings to table set of best practices, tools, and solutions:
 
 * 100% [Kotlin](https://kotlinlang.org/)
-* Modularization (app, presentation, domain, data, shared)
 * [Android Jetpack](https://developer.android.com/jetpack)
 * A single-activity architecture, using the [Navigation component](https://developer.android.com/guide/navigation/navigation-getting-started)
 * Testing
-* Dependency Injection
-* Static code analyse
-* [Firebase](https://firebase.google.com/) (Authentication and Firestone)
+* Dependency Injection with [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+* Static code analyse with [ktlint](https://ktlint.github.io/)
 * CI integration by gihub actions
 
 ## App Screenshot
 
-<img src="misc/shopping-list.gif" height="600"/>
+<img src="misc/github-search.gif" height="600"/>
 
 ## Tech-stack
 
@@ -60,21 +61,21 @@ This project brings to table set of best practices, tools, and solutions:
 | Technology   	| Description   	|
 |---	|---	|
 | [Kotlin](https://kotlinlang.org/) + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)   	| Perform background operations   	|
-| [Koin](https://insert-koin.io/)   	| Dependency injection   	|
-| [Firebase authentication](https://firebase.google.com/docs/auth)   	| Authentication   	|
-| [Firebase firestone](https://firebase.google.com/docs/firestore)   	| Remote database   	|
-| [kotlinx-coroutines-play-services](https://github.com/Kotlin/kotlinx.coroutines/tree/master/integration/kotlinx-coroutines-play-services)   	| Extension function to handle firebase requests   	|
+| [hilt](https://developer.android.com/training/dependency-injection/hilt-android)   	| Dependency injection   	|
 | [Timber](https://github.com/JakeWharton/timber)   	| Logging   	|
 | [core-ktx](https://developer.android.com/kotlin/ktx)   	| Kotlin extensions   	|
+| [Flow](https://developer.android.com/kotlin/flow?hl=pt-br)   	| Notify views about database change   	|
 | [swiperefreshlayout](https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout)   	| Visual refresh layout   	|
+| [Cardview](https://developer.android.com/guide/topics/ui/layout/cardview)   	| CardView layout   	|
+| [Retrofit](https://square.github.io/retrofit/)   	| A type-safe HTTP client for Android and Java/Kotlin   	|
 
 ### [Jetpack](https://developer.android.com/jetpack)
 
 | Technology   	| Description   	|
 |---	|---	|
-| [Navigation](https://developer.android.com/topic/libraries/architecture/navigation/)   	| Deal with whole in-app navigation   	|
-| [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)   	| Notify views about database change   	|
-| [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle)   	| Perform an action when lifecycle state changes   	|
+| [Navigation](http://robolectric.org/)   	| Deal with whole in-app navigation   	|
+| [Room](https://developer.android.com/jetpack/androidx/releases/room)   	| Database ORM   	|
+| [Paging 3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)   	| Deal with large data in RecycleView   	|
 | [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)   	| Store and manage UI-related data in a lifecycle conscious way   	|
 | [Constraintlayout](https://developer.android.com/reference/androidx/constraintlayout/widget/ConstraintLayout)   	| Allows to build  flexible layout   	|
 | [Test](https://developer.android.com/training/testing/)   	| Tests   	|
@@ -84,10 +85,12 @@ This project brings to table set of best practices, tools, and solutions:
 
 | Technology   	| Description   	|
 |---	|---	|
-| [Unit Tests](https://en.wikipedia.org/wiki/Unit_testing) ([JUnit](https://junit.org/junit4/))
+| [Robolectric](https://en.wikipedia.org/wiki/Unit_testing) |  Run Instrumentation test in JVM |
+| [Unit Tests](https://en.wikipedia.org/wiki/Unit_testing) | Unit testing |
 [core-testing](https://androidx.tech/artifacts/arch.core/core-testing/)   	| Used to sync background tasks   	|
 | [kotlinx-coroutines-test](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-test/)       | Used to sync coroutines jobs       |
 | [mockk](https://mockk.io/)       | Mock objects using kotlin's style       |
+| [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver)       | Mock http/https requests       |
 
 ### Static code Analyse
 
@@ -108,7 +111,7 @@ The application is separated  in modules as displayed below
 
 ## What this project does not cover?
 
-The project does not cover ...
+The project does not cover e2e tests. This will be done as soon as possible.
 
 ## Getting started
 
@@ -117,18 +120,12 @@ There are a few ways to open this project.
 ### Android Studio
 
 1. Android Studio -> File -> New -> From Version control -> Git
-2. Enter `https://github.com/thiagoolsilva/TBD` into URL field
+2. Enter `https://github.com/thiagoolsilva/github-search` into URL field
 
 ### Command-line
 
-1. Run `git clone https://github.com/thiagoolsilva/TBD`
+1. Run `git clone https://github.com/thiagoolsilva/github-search`
 2. Android Studio -> File -> Open
-
-### Projects
-
-Other high-quality projects will help you to find solutions that work for your project:
-
-* [books jetpack](https://github.com/nglauber/books_jetpack) - a showcase that uses jetpack components
 
 ## Author
 
@@ -155,7 +152,7 @@ Other high-quality projects will help you to find solutions that work for your p
 
 ## License
 ```
-Copyright (c) 2020  Thiago Lopes da Silva
+Copyright (c) 2022  Thiago Lopes da Silva
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
