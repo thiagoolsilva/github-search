@@ -14,21 +14,11 @@
  *  limitations under the License.
  */
 
-package com.lopes.githubsearch.presentation.mapper
+package com.lopes.githubsearch.ui.imageloader
 
-import com.lopes.githubsearch.model.ObjectInject
-import org.junit.Assert
-import org.junit.Test
+import android.content.Context
+import android.widget.ImageView
 
-class SearchGithubDomainMapperUnitTest {
-    private val searchGithubDomain by lazy {
-        ObjectInject.searchGithubDomain
-    }
-
-    @Test
-    fun should_convert_to_github_info_view() {
-        val convertedGithubInfoView = searchGithubDomain.toGithubInfoView()
-        val expectedGithubInfoView = ObjectInject.githubInfoView
-        Assert.assertEquals(convertedGithubInfoView, expectedGithubInfoView)
-    }
+interface ImageLoader {
+    fun load(context: Context, url: String, view: ImageView)
 }

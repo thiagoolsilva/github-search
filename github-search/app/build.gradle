@@ -6,16 +6,27 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.lopes.githubsearch"
         minSdk 23
-        targetSdk 32
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.lopes.githubsearch.HiltTestRunner"
+    }
+
+    sourceSets {
+        String sharedTestDir = 'src/sharedTest/java'
+        test {
+            java.srcDir sharedTestDir
+        }
+        androidTest {
+            java.srcDir sharedTestDir
+        }
     }
 
     buildTypes {
@@ -47,7 +58,6 @@ android {
     }
 }
 dependencies {
-
     def paging_version = "3.0.0"
     def retrofitVersion = "2.9.0"
     def loggingInterceptor = "4.9.0"
@@ -69,10 +79,11 @@ dependencies {
     def roboletric = "4.5.1"
     def mockWebServer = "4.7.2"
     def coreKtxTest = "1.4.0"
+    def hilt_version = "2.40"
 
     // dependency injection
-    implementation "com.google.dagger:hilt-android:2.40"
-    kapt "com.google.dagger:hilt-android-compiler:2.40"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     // swipe refresh
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefresh"
@@ -122,6 +133,21 @@ dependencies {
     testImplementation "org.robolectric:robolectric:$roboletric"
     testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebServer"
     testImplementation "androidx.test:core-ktx:$coreKtxTest"
+
+    def nav_version = "2.3.0"
+    def androidx_test_espresso = "3.4.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$androidx_test_espresso"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    debugImplementation "androidx.fragment:fragment-testing:1.5.0-alpha02"
+    androidTestImplementation "io.mockk:mockk-android:1.12.2"
+
+    def androidx_test = "1.4.0"
+    androidTestImplementation "androidx.test:runner:$androidx_test"
+    androidTestImplementation "androidx.test:core:$androidx_test"
+    androidTestImplementation "androidx.test.ext:junit-ktx:1.1.3"
 }
 
 

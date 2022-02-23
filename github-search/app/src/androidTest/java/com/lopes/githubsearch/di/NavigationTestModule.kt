@@ -14,21 +14,24 @@
  *  limitations under the License.
  */
 
-package com.lopes.githubsearch.presentation.mapper
+package com.lopes.githubsearch.di
 
-import com.lopes.githubsearch.model.ObjectInject
-import org.junit.Assert
-import org.junit.Test
+import com.lopes.githubsearch.data.api.SearchGithubAPIContract
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.components.SingletonComponent
+import dagger.hilt.testing.TestInstallIn
+import io.mockk.mockk
+import javax.inject.Singleton
 
-class SearchGithubDomainMapperUnitTest {
-    private val searchGithubDomain by lazy {
-        ObjectInject.searchGithubDomain
-    }
+@Module
+@TestInstallIn(
+    components = [SingletonComponent::class],
+    replaces = [NetworkModule::class]
+)
+object NavigationTestModule {
 
-    @Test
-    fun should_convert_to_github_info_view() {
-        val convertedGithubInfoView = searchGithubDomain.toGithubInfoView()
-        val expectedGithubInfoView = ObjectInject.githubInfoView
-        Assert.assertEquals(convertedGithubInfoView, expectedGithubInfoView)
-    }
+    @Provides
+    @Singleton
+    fun providesSearchAPI(): SearchGithubAPIContract = mockk()
 }

@@ -18,7 +18,7 @@ package com.lopes.githubsearch.data.source
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.lopes.githubsearch.data.database.AppDatabase
-import com.lopes.githubsearch.support.model.ObjectInject
+import com.lopes.githubsearch.model.ObjectInject
 import com.lopes.githubsearch.util.rule.TestCoroutineRule
 import io.mockk.MockKAnnotations
 import io.mockk.clearMocks

@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.lopes.githubsearch.support.model
+package com.lopes.githubsearch.model
 
 import com.lopes.githubsearch.data.api.dto.SearchGithubApiResponse
 import com.lopes.githubsearch.data.api.dto.SearchGithubInfoItemResponse

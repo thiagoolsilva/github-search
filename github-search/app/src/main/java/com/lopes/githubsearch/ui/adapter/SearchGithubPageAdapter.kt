@@ -22,13 +22,15 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.lopes.githubsearch.R
 import com.lopes.githubsearch.databinding.ContentItemBinding
+import com.lopes.githubsearch.ui.imageloader.ImageLoader
 import com.lopes.githubsearch.ui.model.GithubInfoView
 import javax.inject.Inject
 
-class SearchGithubPageAdapter @Inject constructor() :
+class SearchGithubPageAdapter @Inject constructor(
+    private val imageLoader: ImageLoader
+) :
     PagingDataAdapter<GithubInfoView, SearchGithubPageAdapter.SearchViewHolder>(
         diffSearchViewItems
     ) {
@@ -60,9 +62,9 @@ class SearchGithubPageAdapter @Inject constructor() :
             val developerUrl = item.developerPhotoUrl
 
             // download and cache image into ImageView
-            Glide.with(binding.imgDeveloperUrl.context)
-                .load(developerUrl)
-                .into(binding.imgDeveloperUrl)
+            imageLoader.load(binding.imgDeveloperUrl.context,
+                developerUrl,
+                binding.imgDeveloperUrl)
         }
     }
 

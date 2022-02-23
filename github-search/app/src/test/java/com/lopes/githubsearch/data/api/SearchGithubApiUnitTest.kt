@@ -16,7 +16,7 @@
 
 package com.lopes.githubsearch.data.api
 
-import com.lopes.githubsearch.support.model.ObjectInject
+import com.lopes.githubsearch.model.ObjectInject
 import com.lopes.githubsearch.util.retrofit.toJson
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
