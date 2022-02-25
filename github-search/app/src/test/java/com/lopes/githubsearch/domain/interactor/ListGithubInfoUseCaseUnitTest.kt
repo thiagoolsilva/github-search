@@ -20,7 +20,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagingData
 import com.lopes.githubsearch.data.database.entities.GithubEntity
 import com.lopes.githubsearch.domain.repository.SearchGithubRepository
-import com.lopes.githubsearch.support.model.ObjectInject
+import com.lopes.githubsearch.model.ObjectInject
 import com.lopes.githubsearch.util.paging.SearchGithubDomainDiff
 import com.lopes.githubsearch.util.paging.collectData
 import com.lopes.githubsearch.util.rule.TestCoroutineRule

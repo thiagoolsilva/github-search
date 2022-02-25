@@ -1,4 +1,40 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+ext {
+    // core
+    hiltVersion = "2.40"
+    pagingVersion = "3.0.0"
+    retrofitVersion = "2.9.0"
+    loggingInterceptor = "4.9.0"
+    roomVersion = '2.3.0'
+    coroutines = '1.5.2'
+    glide = '4.13.0'
+    cardView = '1.0.0'
+    navigation = '2.3.5'
+    appCompat = '1.4.1'
+    coreKtx = '1.7.0'
+    constraintLayout = '2.1.2'
+    materialDesign = '1.4.0'
+    swipeRefresh = '1.1.0'
+    timber = '5.0.1'
+
+    // tests
+    jUnit = '4.+'
+    mockk = '1.11.0'
+    coroutinesTest = "1.4.2"
+    archTest = "2.1.0"
+    roboletric = "4.5.1"
+    mockWebServer = "4.7.2"
+    coreKtxTest = "1.4.0"
+
+    // Android tests
+    navVersionAndroidTest = "2.3.0"
+    androidxEspressoAndroidTest = "3.4.0"
+    fragmentAndroidTest = "1.5.0-alpha02"
+    androidxAndroidTest = "1.4.0"
+    junitKtxAndroidtest = "1.1.3"
+}
+
 buildscript {
     repositories {
         google()
@@ -27,3 +63,4 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+

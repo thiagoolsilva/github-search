@@ -91,6 +91,9 @@ This project brings to table set of best practices, tools, and solutions:
 | [kotlinx-coroutines-test](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-test/)       | Used to sync coroutines jobs       |
 | [mockk](https://mockk.io/)       | Mock objects using kotlin's style       |
 | [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver)       | Mock http/https requests       |
+| [fragment-testing](https://developer.android.com/guide/fragments/test)       | Fragment Test library       |
+| [hilt-android-testing](https://developer.android.com/training/dependency-injection/hilt-testing)       | Dependency inject for Test       |
+| [Espresso](https://developer.android.com/training/testing/espresso)       | Use Espresso to write concise, beautiful, and reliable Android UI tests.     |
 
 ### Static code Analyse
 
@@ -99,7 +102,7 @@ This project brings to table set of best practices, tools, and solutions:
 | [Klint](https://ktlint.github.io/#getting-started)   	| An anti-bikeshedding Kotlin linter with built-in formatter.   	|
 
 * Architecture
-    * Clean Architecture (at module level)
+    * Clean Architecture
     * MVVM (presentation layer)
 * Gradle
 
@@ -111,7 +114,7 @@ The application is separated  in modules as displayed below
 
 ## What this project does not cover?
 
-The project does not cover e2e tests. This will be done as soon as possible.
+NDA.
 
 ## Getting started
 

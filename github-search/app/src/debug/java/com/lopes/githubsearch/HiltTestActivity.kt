@@ -14,21 +14,10 @@
  *  limitations under the License.
  */
 
-package com.lopes.githubsearch.presentation.mapper
+package com.lopes.githubsearch
 
-import com.lopes.githubsearch.model.ObjectInject
-import org.junit.Assert
-import org.junit.Test
+import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-class SearchGithubDomainMapperUnitTest {
-    private val searchGithubDomain by lazy {
-        ObjectInject.searchGithubDomain
-    }
-
-    @Test
-    fun should_convert_to_github_info_view() {
-        val convertedGithubInfoView = searchGithubDomain.toGithubInfoView()
-        val expectedGithubInfoView = ObjectInject.githubInfoView
-        Assert.assertEquals(convertedGithubInfoView, expectedGithubInfoView)
-    }
-}
+@AndroidEntryPoint
+class HiltTestActivity : AppCompatActivity()

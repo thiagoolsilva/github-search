@@ -14,21 +14,19 @@
  *  limitations under the License.
  */
 
-package com.lopes.githubsearch.presentation.mapper
+package com.lopes.githubsearch.di
 
-import com.lopes.githubsearch.model.ObjectInject
-import org.junit.Assert
-import org.junit.Test
+import com.lopes.githubsearch.ui.imageloader.GlideImageLoader
+import com.lopes.githubsearch.ui.imageloader.ImageLoader
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-class SearchGithubDomainMapperUnitTest {
-    private val searchGithubDomain by lazy {
-        ObjectInject.searchGithubDomain
-    }
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class ImageLoaderModule {
 
-    @Test
-    fun should_convert_to_github_info_view() {
-        val convertedGithubInfoView = searchGithubDomain.toGithubInfoView()
-        val expectedGithubInfoView = ObjectInject.githubInfoView
-        Assert.assertEquals(convertedGithubInfoView, expectedGithubInfoView)
-    }
+    @Binds
+    abstract fun providesGlideImageLoader(glideImageLoader: GlideImageLoader): ImageLoader
 }

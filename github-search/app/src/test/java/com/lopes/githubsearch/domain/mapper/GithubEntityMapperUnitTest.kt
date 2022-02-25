@@ -16,7 +16,7 @@
 
 package com.lopes.githubsearch.domain.mapper
 
-import com.lopes.githubsearch.support.model.ObjectInject
+import com.lopes.githubsearch.model.ObjectInject
 import org.junit.Assert
 import org.junit.Test
 
