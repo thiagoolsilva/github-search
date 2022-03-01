@@ -22,12 +22,11 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.lopes.githubsearch.crosscutting.NetworkConstants.Constants.FIRST_GITHUB_SEARCH_PAGE_INDEX
-import com.lopes.githubsearch.crosscutting.addHour
-import com.lopes.githubsearch.crosscutting.diffInHour
 import com.lopes.githubsearch.data.database.AppDatabase
 import com.lopes.githubsearch.data.database.entities.GithubEntity
 import com.lopes.githubsearch.data.database.entities.SearchGithubInfoPage
 import com.lopes.githubsearch.data.mapper.toGithubEntity
+import com.lopes.githubsearch.data.mediator.cache.CacheStrategy
 import com.lopes.githubsearch.domain.repository.SearchLocalGithubInfoDataSource
 import com.lopes.githubsearch.domain.repository.SearchPagingLocalKeyDataSource
 import com.lopes.githubsearch.domain.repository.SearchRemoteGithubDataSource
@@ -41,21 +40,14 @@ class SearchGithubMediator(
     private val query: String,
     private val remoteDataSource: SearchRemoteGithubDataSource,
     private val localSearchPagingKeyData: SearchPagingLocalKeyDataSource<AppDatabase>,
-    private val localSearchGithubGithubInfoData: SearchLocalGithubInfoDataSource<AppDatabase>
+    private val localSearchGithubGithubInfoData: SearchLocalGithubInfoDataSource<AppDatabase>,
+    private val cacheStrategy: CacheStrategy
 ) : RemoteMediator<Int, GithubEntity>() {
 
     override suspend fun initialize(): InitializeAction {
-        val expectedCacheTimeInHour = 1
         val lastDbUpdate = localSearchPagingKeyData.searchRemoteKeyById(query)?.lastUpdateTime
-        val isCacheUpToDate = when (lastDbUpdate) {
-            null -> false
-            else -> {
-                val diffInHour = Date(System.currentTimeMillis()).diffInHour(lastDbUpdate)
-                diffInHour <= expectedCacheTimeInHour
-            }
-        }
-        Timber.d("lastDbUpdate: $lastDbUpdate, nextDbUpdate: ${lastDbUpdate?.addHour(expectedCacheTimeInHour)}, " +
-                "is cache up to date: $isCacheUpToDate, cache time in hour: $expectedCacheTimeInHour")
+        val currentDateTime = Date(System.currentTimeMillis())
+        val isCacheUpToDate = cacheStrategy.isCacheUpToDate(1, currentDateTime, lastDbUpdate)
         return if (isCacheUpToDate) {
             // Cached data is up-to-date, so there is no need to re-fetch
             // from the network.

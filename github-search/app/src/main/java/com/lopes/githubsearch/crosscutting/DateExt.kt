@@ -55,3 +55,10 @@ fun Date.addHour(hour: Int): Date {
     calendar.add(Calendar.HOUR, hour)
     return calendar.time
 }
+
+fun Date.addMinute(minute: Int): Date {
+    val calendar = Calendar.getInstance()
+    calendar.timeInMillis = this.time
+    calendar.add(Calendar.MINUTE, minute)
+    return calendar.time
+}
