@@ -24,10 +24,10 @@ import androidx.paging.map
 import com.lopes.githubsearch.domain.interactor.ListGithubInfoUseCase
 import com.lopes.githubsearch.presentation.mapper.toGithubInfoView
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import javax.inject.Inject
 
 @HiltViewModel
 class SearchRepositoryViewModel @Inject constructor(

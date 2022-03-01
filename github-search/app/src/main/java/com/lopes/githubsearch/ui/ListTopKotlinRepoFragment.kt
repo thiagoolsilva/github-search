@@ -32,9 +32,9 @@ import com.lopes.githubsearch.presentation.SearchRepositoryViewModel
 import com.lopes.githubsearch.ui.adapter.SearchGithubInfoLoadState
 import com.lopes.githubsearch.ui.adapter.SearchGithubPageAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 private const val DEFAULT_SEARCH_QUERY_REPOSITORY = "kotlin"
 
@@ -85,7 +85,8 @@ class ListTopKotlinRepoFragment : Fragment() {
                 footer = SearchGithubInfoLoadState { searchRepositoryAdapter.retry() }
             )
             // prevent lost recycle view state after rotation
-            searchRepositoryAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+            searchRepositoryAdapter.stateRestorationPolicy =
+                RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         }
         searchRepositoryAdapter.addLoadStateListener {
             // close swipe layout after event ended

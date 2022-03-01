@@ -22,6 +22,8 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.lopes.githubsearch.crosscutting.NetworkConstants.Constants.FIRST_GITHUB_SEARCH_PAGE_INDEX
+import com.lopes.githubsearch.crosscutting.addHour
+import com.lopes.githubsearch.crosscutting.diffInHour
 import com.lopes.githubsearch.data.database.AppDatabase
 import com.lopes.githubsearch.data.database.entities.GithubEntity
 import com.lopes.githubsearch.data.database.entities.SearchGithubInfoPage
@@ -30,6 +32,7 @@ import com.lopes.githubsearch.domain.repository.SearchLocalGithubInfoDataSource
 import com.lopes.githubsearch.domain.repository.SearchPagingLocalKeyDataSource
 import com.lopes.githubsearch.domain.repository.SearchRemoteGithubDataSource
 import java.io.IOException
+import java.util.Date
 import retrofit2.HttpException
 import timber.log.Timber
 
@@ -40,6 +43,30 @@ class SearchGithubMediator(
     private val localSearchPagingKeyData: SearchPagingLocalKeyDataSource<AppDatabase>,
     private val localSearchGithubGithubInfoData: SearchLocalGithubInfoDataSource<AppDatabase>
 ) : RemoteMediator<Int, GithubEntity>() {
+
+    override suspend fun initialize(): InitializeAction {
+        val expectedCacheTimeInHour = 1
+        val lastDbUpdate = localSearchPagingKeyData.searchRemoteKeyById(query)?.lastUpdateTime
+        val isCacheUpToDate = when (lastDbUpdate) {
+            null -> false
+            else -> {
+                val diffInHour = Date(System.currentTimeMillis()).diffInHour(lastDbUpdate)
+                diffInHour <= expectedCacheTimeInHour
+            }
+        }
+        Timber.d("lastDbUpdate: $lastDbUpdate, nextDbUpdate: ${lastDbUpdate?.addHour(expectedCacheTimeInHour)}, " +
+                "is cache up to date: $isCacheUpToDate, cache time in hour: $expectedCacheTimeInHour")
+        return if (isCacheUpToDate) {
+            // Cached data is up-to-date, so there is no need to re-fetch
+            // from the network.
+            InitializeAction.SKIP_INITIAL_REFRESH
+        } else {
+            // Need to refresh cached data from network; returning
+            // LAUNCH_INITIAL_REFRESH here will also block RemoteMediator's
+            // APPEND and PREPEND from running until REFRESH succeeds.
+            InitializeAction.LAUNCH_INITIAL_REFRESH
+        }
+    }
 
     override suspend fun load(
         loadType: LoadType,
@@ -104,7 +131,11 @@ class SearchGithubMediator(
 
                     val nextPage = page + 1
                     localSearchPagingKeyData.insert(
-                        SearchGithubInfoPage(label = query, nextPage = nextPage)
+                        SearchGithubInfoPage(
+                            label = query,
+                            nextPage = nextPage,
+                            lastUpdateTime = Date()
+                        )
                     )
                     val githubEntity = repos.map { it.toGithubEntity() }
                     localSearchGithubGithubInfoData.insertAll(githubEntity)

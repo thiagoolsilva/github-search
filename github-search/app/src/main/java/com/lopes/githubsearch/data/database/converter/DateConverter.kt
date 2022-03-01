@@ -14,16 +14,19 @@
  *  limitations under the License.
  */
 
-package com.lopes.githubsearch.data.database.entities
+package com.lopes.githubsearch.data.database.converter
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
 import java.util.Date
 
-@Entity(tableName = "search_github_page_index")
-data class SearchGithubInfoPage(
-    @PrimaryKey
-    val label: String,
-    val nextPage: Int?,
-    val lastUpdateTime: Date?
-)
+class DateConverter {
+    @TypeConverter
+    fun fromTimestamp(value: Long?): Date? {
+        return value?.let { Date(it) }
+    }
+
+    @TypeConverter
+    fun dateToTimestamp(date: Date?): Long? {
+        return date?.time?.toLong()
+    }
+}

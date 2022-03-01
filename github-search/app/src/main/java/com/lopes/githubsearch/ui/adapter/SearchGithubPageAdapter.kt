@@ -62,9 +62,11 @@ class SearchGithubPageAdapter @Inject constructor(
             val developerUrl = item.developerPhotoUrl
 
             // download and cache image into ImageView
-            imageLoader.load(binding.imgDeveloperUrl.context,
+            imageLoader.load(
+                binding.imgDeveloperUrl.context,
                 developerUrl,
-                binding.imgDeveloperUrl)
+                binding.imgDeveloperUrl
+            )
         }
     }
 

@@ -8,5 +8,4 @@
     <string name="retry_request">Retry request</string>
     <string name="forks_title">Forks</string>
     <string name="author_title">Author</string>
-    <string name="empty_list">Empty list</string>
 </resources>
