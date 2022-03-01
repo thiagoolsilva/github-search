@@ -41,7 +41,7 @@ class SearchRepoInfoImpl @Inject constructor(
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
-                pageSize = PagingConstants.Constants.PAGING_SIZE
+                pageSize = PagingConstants.Constants.PAGING_SIZE/2
             ),
             remoteMediator = SearchGithubMediator(
                 query = repoLanguage,
