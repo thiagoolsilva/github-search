@@ -67,6 +67,9 @@ dependencies {
     // timber(logging)
     implementation "com.jakewharton.timber:timber:$timber"
 
+    // lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+
     // room
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"

@@ -17,7 +17,7 @@ ext {
     materialDesign = '1.4.0'
     swipeRefresh = '1.1.0'
     timber = '5.0.1'
-    lifecycleVersion = '2.5.0-alpha03'
+    lifecycleVersion = '2.4.0'
 
     // tests
     jUnit = '4.+'
