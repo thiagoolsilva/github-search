@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.search.ListTopKotlinRepoFragment">
+    tools:context=".ui.MainActivity">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
@@ -13,6 +13,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:id="@+id/recycle_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"

@@ -14,16 +14,19 @@
  *  limitations under the License.
  */
 
-package com.lopes.githubsearch.data.database.entities
+package com.lopes.githubsearch.di
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import java.util.Date
+import com.lopes.githubsearch.data.mediator.cache.CacheStrategy
+import com.lopes.githubsearch.data.mediator.cache.CacheStrategyImpl
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-@Entity(tableName = "search_github_page_index")
-data class SearchGithubInfoPage(
-    @PrimaryKey
-    val label: String,
-    val nextPage: Int?,
-    val lastUpdateTime: Date?
-)
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class CacheStrategyModule {
+
+    @Binds
+    abstract fun providesCacheStrategy(impl: CacheStrategyImpl): CacheStrategy
+}

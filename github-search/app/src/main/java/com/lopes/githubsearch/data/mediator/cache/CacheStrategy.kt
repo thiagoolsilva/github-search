@@ -14,16 +14,10 @@
  *  limitations under the License.
  */
 
-package com.lopes.githubsearch.data.database.entities
+package com.lopes.githubsearch.data.mediator.cache
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import java.util.Date
 
-@Entity(tableName = "search_github_page_index")
-data class SearchGithubInfoPage(
-    @PrimaryKey
-    val label: String,
-    val nextPage: Int?,
-    val lastUpdateTime: Date?
-)
+interface CacheStrategy {
+    fun isCacheUpToDate(expectedCacheWindowInHour: Int, cacheReference: Date, lastSavedCache: Date?): Boolean
+}

@@ -15,7 +15,6 @@ android {
         versionCode 1
         versionName "1.0"
 
-//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner "com.lopes.githubsearch.HiltTestRunner"
     }
 
@@ -67,6 +66,9 @@ dependencies {
 
     // timber(logging)
     implementation "com.jakewharton.timber:timber:$timber"
+
+    // lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
 
     // room
     implementation "androidx.room:room-runtime:$roomVersion"

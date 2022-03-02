@@ -24,6 +24,7 @@ import com.lopes.githubsearch.crosscutting.PagingConstants
 import com.lopes.githubsearch.data.database.AppDatabase
 import com.lopes.githubsearch.data.database.entities.GithubEntity
 import com.lopes.githubsearch.data.mediator.SearchGithubMediator
+import com.lopes.githubsearch.data.mediator.cache.CacheStrategy
 import com.lopes.githubsearch.domain.repository.SearchGithubRepository
 import com.lopes.githubsearch.domain.repository.SearchLocalGithubInfoDataSource
 import com.lopes.githubsearch.domain.repository.SearchPagingLocalKeyDataSource
@@ -34,20 +35,22 @@ import kotlinx.coroutines.flow.Flow
 class SearchRepoInfoImpl @Inject constructor(
     private val remoteDataSource: SearchRemoteGithubDataSource,
     private val localSearchGithubGithubInfoData: SearchLocalGithubInfoDataSource<AppDatabase>,
-    private val localSearchLocalKeyData: SearchPagingLocalKeyDataSource<AppDatabase>
+    private val localSearchLocalKeyData: SearchPagingLocalKeyDataSource<AppDatabase>,
+    private val cacheStrategy: CacheStrategy
 ) : SearchGithubRepository {
 
     override fun searchRepoByLanguage(repoLanguage: String): Flow<PagingData<GithubEntity>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
-                pageSize = PagingConstants.Constants.PAGING_SIZE
+                pageSize = PagingConstants.Constants.PAGING_SIZE / 2
             ),
             remoteMediator = SearchGithubMediator(
                 query = repoLanguage,
                 remoteDataSource = remoteDataSource,
                 localSearchPagingKeyData = localSearchLocalKeyData,
-                localSearchGithubGithubInfoData = localSearchGithubGithubInfoData
+                localSearchGithubGithubInfoData = localSearchGithubGithubInfoData,
+                cacheStrategy = cacheStrategy
             ),
             pagingSourceFactory = {
                 localSearchGithubGithubInfoData.getAllByPagingSource()

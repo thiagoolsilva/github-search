@@ -23,22 +23,31 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.lopes.githubsearch.domain.interactor.ListGithubInfoUseCase
 import com.lopes.githubsearch.presentation.mapper.toGithubInfoView
-import com.lopes.githubsearch.ui.model.GithubInfoView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 
 @HiltViewModel
 class SearchRepositoryViewModel @Inject constructor(
     private val listGithubInfoUseCase: ListGithubInfoUseCase
 ) : ViewModel() {
 
-    fun searchRepo(query: String): Flow<PagingData<GithubInfoView>> {
-        return listGithubInfoUseCase.execute(query).map { pagingData ->
-            pagingData.map {
-                it.toGithubInfoView()
-            }
-        }.cachedIn(viewModelScope)
+    /**
+     * Get a flow of github results from repository
+     * @return StateFlow of Paging Data that lives for 5 seconds.
+     */
+    fun searchRepo(query: String) = listGithubInfoUseCase.execute(query).map { pagingData ->
+        pagingData.map {
+            it.toGithubInfoView()
+        }
     }
+        // cache pageData transformation
+        .cachedIn(viewModelScope)
+        .stateIn(
+            initialValue = PagingData.empty(),
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000)
+        )
 }

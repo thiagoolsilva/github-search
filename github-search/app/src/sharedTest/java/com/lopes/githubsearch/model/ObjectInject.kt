@@ -23,6 +23,7 @@ import com.lopes.githubsearch.data.database.entities.GithubEntity
 import com.lopes.githubsearch.data.database.entities.SearchGithubInfoPage
 import com.lopes.githubsearch.domain.entity.SearchGithubDomain
 import com.lopes.githubsearch.ui.model.GithubInfoView
+import java.util.Date
 
 class ObjectInject {
 
@@ -71,11 +72,15 @@ class ObjectInject {
         )
         val searchGithubInfoPage = SearchGithubInfoPage(
             label = "kotlin",
-            nextPage = 2
+            nextPage = 2,
+            lastUpdateTime = null
         )
         val searchGithubApiResponse = SearchGithubApiResponse(
             total = 1,
             items = listOf(searchGithubInfoItemResponse)
+        )
+        data class Cache(
+            val currentCacheHour: Date = Date(System.currentTimeMillis())
         )
     }
 }

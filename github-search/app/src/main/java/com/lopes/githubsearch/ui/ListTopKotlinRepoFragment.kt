@@ -22,15 +22,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.lopes.githubsearch.databinding.ListTopKotlinRepoFragmentBinding
 import com.lopes.githubsearch.presentation.SearchRepositoryViewModel
 import com.lopes.githubsearch.ui.adapter.SearchGithubInfoLoadState
 import com.lopes.githubsearch.ui.adapter.SearchGithubPageAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -45,7 +47,6 @@ class ListTopKotlinRepoFragment : Fragment() {
     @Inject
     lateinit var searchRepositoryAdapter: SearchGithubPageAdapter
     private val viewModel: SearchRepositoryViewModel by viewModels()
-    private var fetchRepo: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -83,6 +84,9 @@ class ListTopKotlinRepoFragment : Fragment() {
             adapter = searchRepositoryAdapter.withLoadStateFooter(
                 footer = SearchGithubInfoLoadState { searchRepositoryAdapter.retry() }
             )
+            // prevent lost recycle view state after rotation
+            searchRepositoryAdapter.stateRestorationPolicy =
+                RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         }
         searchRepositoryAdapter.addLoadStateListener {
             // close swipe layout after event ended
@@ -94,12 +98,13 @@ class ListTopKotlinRepoFragment : Fragment() {
      * Fetch kotlin repositories in Github using cache strategy
      */
     private fun fetchKotlinRepositories() {
-        fetchRepo?.cancel()
-
-        fetchRepo = lifecycleScope.launch {
-            viewModel.searchRepo(DEFAULT_SEARCH_QUERY_REPOSITORY).collectLatest {
-                searchRepositoryAdapter.submitData(it)
-            }
+        lifecycleScope.launch {
+            viewModel.searchRepo(DEFAULT_SEARCH_QUERY_REPOSITORY)
+                // only receive data when UI is being showing to the user.
+                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collectLatest {
+                    searchRepositoryAdapter.submitData(it)
+                }
         }
     }
 

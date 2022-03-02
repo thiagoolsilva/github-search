@@ -18,6 +18,8 @@ package com.lopes.githubsearch.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.lopes.githubsearch.data.database.converter.DateConverter
 import com.lopes.githubsearch.data.database.dao.SearchGithubDao
 import com.lopes.githubsearch.data.database.dao.SearchGithubPageDao
 import com.lopes.githubsearch.data.database.entities.GithubEntity
@@ -28,6 +30,7 @@ import com.lopes.githubsearch.data.database.entities.SearchGithubInfoPage
     version = 1,
     exportSchema = false
 )
+@TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     // Database DAOs

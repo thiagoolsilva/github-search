@@ -5,10 +5,12 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_fork.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/ic_star.xml" value="0.371875" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_item.xml" value="0.67" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.19427083333333334" />
+        <entry key="app/src/main/res/layout/empty_list_content.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/list_top_kotlin_repo_fragment.xml" value="0.19427083333333334" />
+        <entry key="app/src/main/res/layout/list_top_kotlin_repo_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/load_github_footer_state.xml" value="0.33" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.16944444444444445" />
