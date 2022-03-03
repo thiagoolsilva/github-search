@@ -116,6 +116,14 @@ class ListTopKotlinRepoFragmentTest {
             Navigation.setViewNavController(requireView(), testNavHostController)
         }
 
+        onView(withId(R.id.recycle_view))
+            .perform(
+                RecyclerViewActions.scrollToPosition<SearchGithubPageAdapter.SearchViewHolder>(
+                    1
+                )
+            )
+            .check(matches(isDisplayed()))
+
         val expectedRepositoryStarCount =
             ObjectInject.searchGithubApiResponse.items.first().stars.toString()
         onView(withId(R.id.txt_star_count))
@@ -132,9 +140,17 @@ class ListTopKotlinRepoFragmentTest {
             Navigation.setViewNavController(requireView(), testNavHostController)
         }
 
+        onView(withId(R.id.recycle_view))
+            .perform(
+                RecyclerViewActions.scrollToPosition<SearchGithubPageAdapter.SearchViewHolder>(
+                    1
+                )
+            )
+            .check(matches(isDisplayed()))
+
         val expectedRepositoryForksCount =
             ObjectInject.searchGithubApiResponse.items.first().forks.toString()
-        onView(withId(R.id.txt_star_count))
+        onView(withId(R.id.txt_fork_count))
             .check(matches(withText(expectedRepositoryForksCount)))
     }
 }
